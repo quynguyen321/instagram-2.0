@@ -4,10 +4,10 @@ import faker from 'faker'
 function Suggestions() {
   const[suggestions, setSuggestions] = useState([]);
   useEffect(() =>{
-      const suggestions = [..Array(5)].map((_,i) =>(
+      const suggestions = [...Array(5)].map((_,i) =>(
           {
               ...faker.helpers.contextualCard(),
-              id i,
+              id: i,
           }));
 
           setSuggestions(suggestions);
@@ -16,9 +16,27 @@ function Suggestions() {
   return (
     <div className='mt-4 ml-10'>
     <div className='flex justify-between text-sm mb-5'>
-      <h3 className='text-sm font-bold'> Suggestions for you</h3>
-      <button>See All</button>
+      <h3 className='text-sm font-bold text bg-gray-400'> Suggestions for you</h3>
+      <button className='text-gray-600 font-semibold'>See All</button>
       </div>
+
+      {
+        suggestions.map(profile => (
+          <div 
+          key={profile.id} classname='flex items-center justify-between mt-3'>
+
+          <img 
+          className='w-10 h-10 rounded-full border p-[2px]' src={profile.avatar} alt="" />
+
+          <div className='flex-1 ml-4'>
+            <h2 className='font-semibold text-sm'>{profile.username}</h2>
+            <h3>Works at {profile.company.name}</h3>
+          </div>
+
+          
+          </div>
+        ))
+      }
     </div>
   )
 }
