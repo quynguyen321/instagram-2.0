@@ -14,14 +14,14 @@ const posts =[
     username: 'quy.ybu',
     userImg:'https://www.looper.com/img/gallery/fans-agree-this-is-the-worst-character-in-demon-slayer/intro-1629224623.webp',
     img: 'https://www.looper.com/img/gallery/fans-agree-this-is-the-worst-character-in-demon-slayer/intro-1629224623.webp',
-    caption:'This is AMAZING'
+    caption:'wow'
   },
   {
     id: '3',
     username: 'quy.ybu',
     userImg:'https://www.looper.com/img/gallery/fans-agree-this-is-the-worst-character-in-demon-slayer/intro-1629224623.webp',
     img: 'https://www.looper.com/img/gallery/fans-agree-this-is-the-worst-character-in-demon-slayer/intro-1629224623.webp',
-    caption:'This is AMAZING'
+    caption:'This is cool'
   },
   
 ]
