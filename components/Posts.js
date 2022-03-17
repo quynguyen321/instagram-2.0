@@ -1,39 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Post from '../components/Post'
+import { collection, onSnapshot, orderBy, query, setPosts } from 'firebase/firestore';
+import { db } from '../firebase';
+
 
 const posts =[
-  {
-    id: '1',
-    username: 'quy.ybu',
-    userImg:'https://www.looper.com/img/gallery/fans-agree-this-is-the-worst-character-in-demon-slayer/intro-1629224623.webp',
-    img: 'https://www.looper.com/img/gallery/fans-agree-this-is-the-worst-character-in-demon-slayer/intro-1629224623.webp',
-    caption:'This is AMAZING'
-  },
-  {
-    id: '2',
-    username: 'quy.ybu',
-    userImg:'https://www.looper.com/img/gallery/fans-agree-this-is-the-worst-character-in-demon-slayer/intro-1629224623.webp',
-    img: 'https://www.looper.com/img/gallery/fans-agree-this-is-the-worst-character-in-demon-slayer/intro-1629224623.webp',
-    caption:'wow'
-  },
-  {
-    id: '3',
-    username: 'quy.ybu',
-    userImg:'https://www.looper.com/img/gallery/fans-agree-this-is-the-worst-character-in-demon-slayer/intro-1629224623.webp',
-    img: 'https://www.looper.com/img/gallery/fans-agree-this-is-the-worst-character-in-demon-slayer/intro-1629224623.webp',
-    caption:'This is cool'
-  },
+ 
   
 ]
 function Posts() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(
+    () => 
+    onSnapshot(
+      query(collection(db, 'posts'), orderBy('timestamp', 'desc')), 
+      (snapshot) => {
+        setPosts(snapshot.docs);
+      }
+      ),
+      [db]
+  );
+
+
   return (
     <div>
-   {posts.map(post => (
-      <Post key={post.id} id={post.id}
-      username={post.username}
-      userImg={post.userImg}
-      img={post.img}
-      caption={post.caption}
+    {posts.map(post => (
+      <Post 
+      key={post.id} 
+      id={post.id}
+      username={post.data().username}
+      userImg={post.data().profileImg}
+      img={post.data().image}
+      caption={post.data().caption}
       />
    ))}
 
