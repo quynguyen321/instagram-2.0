@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import faker from 'faker'
+import React, { useEffect, useState } from 'react';
+import faker from 'faker';
+import { AvatarGenerator } from 'random-avatar-generator';
 
 function Suggestions() {
   const[suggestions, setSuggestions] = useState([]);
@@ -12,6 +13,8 @@ function Suggestions() {
 
           setSuggestions(suggestions);
   },[] );
+
+  const generator = new AvatarGenerator();
 
   return (
     <div className='mt-4 ml-10'>
@@ -28,7 +31,7 @@ function Suggestions() {
 
           <img 
           className='w-10 h-10 rounded-full border p-[2px]' 
-          src={profile.avatar} 
+          src={generator.generateRandomAvatar()}
           alt="" />
 
           <div className='flex-1 ml-4'>

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import faker from 'faker'
 import Story from './Story'
 import { useSession } from "next-auth/react"
+import { AvatarGenerator } from 'random-avatar-generator';
 
 function Stories() {
 
 const [suggestions, setSuggestions] = useState([]);
 const { data: session } = useSession ();
+const generator = new AvatarGenerator();
 
 useEffect (() => {
    const suggestions = [...Array(20)].map((_, i) => ({
@@ -27,11 +29,11 @@ useEffect (() => {
     {suggestions.map(profile => (
         <Story 
         key={profile.id}
-        img={profile.avatar} 
+        img={generator.generateRandomAvatar()} 
         username={profile.username}
         />
     ))}
-    // stories
+
     </div>
   )
 }
